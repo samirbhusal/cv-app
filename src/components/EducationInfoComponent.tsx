@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import type { FormEvent } from "react";
 import { GraduationCap, Edit2, Trash2, Plus, Save } from "lucide-react";
+import CommonInputField from "./CommonInputField";
+import CommonEditWrapper from "./CommonEditWrapper";
 
 interface EducationData {
   school: string;
@@ -51,20 +53,12 @@ export const Education: React.FC<EducationProps> = ({ education, onSave }) => {
 
   if (!isEditing) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div className="flex justify-between items-start mb-4">
-          <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-            <GraduationCap className="w-6 h-6 text-purple-600" />
-            Education
-          </h2>
-          <button
-            onClick={() => setIsEditing(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            <Edit2 className="w-4 h-4" />
-            Edit
-          </button>
-        </div>
+      <CommonEditWrapper
+        title="Personal Information"
+        icon={<GraduationCap />}
+        iconColor="text-blue-600"
+        onEdit={() => setIsEditing(true)}
+      >
         <div className="space-y-4">
           {eduList.map((edu) => (
             <div key={edu.id} className="border-l-4 border-purple-600 pl-4">
@@ -76,7 +70,7 @@ export const Education: React.FC<EducationProps> = ({ education, onSave }) => {
             </div>
           ))}
         </div>
-      </div>
+      </CommonEditWrapper>
     );
   }
 
@@ -101,51 +95,30 @@ export const Education: React.FC<EducationProps> = ({ education, onSave }) => {
                 <Trash2 className="w-5 h-5" />
               </button>
             )}
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                  School Name
-                </label>
-                <input
-                  type="text"
-                  value={edu.school}
-                  onChange={(e) =>
-                    handleChange(edu.id, "school", e.target.value)
-                  }
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="University of Example"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                  Degree/Title
-                </label>
-                <input
-                  type="text"
-                  value={edu.title}
-                  onChange={(e) =>
-                    handleChange(edu.id, "title", e.target.value)
-                  }
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="Bachelor of Science in Computer Science"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                  Date
-                </label>
-                <input
-                  type="text"
-                  value={edu.date}
-                  onChange={(e) => handleChange(edu.id, "date", e.target.value)}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="2018 - 2022"
-                />
-              </div>
-            </div>
+
+            <CommonInputField
+              fieldName="School Name"
+              fieldValue={edu.school}
+              onChange={(e) => handleChange(edu.id, "school", e.target.value)}
+              placeholder="e.g. Havard University"
+              type="text"
+            />
+
+            <CommonInputField
+              fieldName="Degree/Title"
+              fieldValue={edu.title}
+              onChange={(e) => handleChange(edu.id, "title", e.target.value)}
+              placeholder="e.g. Bachelor of Science in Computer Science"
+              type="text"
+            />
+
+            <CommonInputField
+              fieldName="Date"
+              fieldValue={edu.date}
+              onChange={(e) => handleChange(edu.id, "date", e.target.value)}
+              placeholder="e.g. 2018 - 2022"
+              type="text"
+            />
           </div>
         ))}
         <div className="flex gap-3">

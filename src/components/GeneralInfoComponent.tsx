@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import type { ChangeEvent } from "react";
-import { User, Mail, Phone, Edit2, Save } from "lucide-react";
+import { User, UserIcon, Phone, Mail, Save } from "lucide-react";
 import CommonInputField from "./CommonInputField";
-import CommonEditing from "./CommonEditing";
+import CommonEditWrapper from "./CommonEditWrapper";
 
 interface GeneralInfoData {
   name: string;
@@ -31,7 +31,30 @@ export const GeneralInfo: React.FC<GeneralInfoProps> = ({ data, onSave }) => {
   };
 
   if (!isEditing) {
-    return <CommonEditing formData={formData} setIsEditing={setIsEditing} />;
+    return (
+      <CommonEditWrapper
+        title="Personal Information"
+        icon={<UserIcon />}
+        iconColor="text-blue-600"
+        onEdit={() => setIsEditing(true)}
+      >
+        <div className="space-y-3">
+          <div>
+            <h3 className="text-3xl font-bold text-gray-900">
+              {formData.name}
+            </h3>
+          </div>
+          <div className="flex items-center gap-2 text-gray-700">
+            <Mail className="w-5 h-5 text-blue-600" />
+            <span>{formData.email}</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-700">
+            <Phone className="w-5 h-5 text-blue-600" />
+            <span>{formData.phone}</span>
+          </div>
+        </div>
+      </CommonEditWrapper>
+    );
   }
 
   return (

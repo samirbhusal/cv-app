@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import type { FormEvent } from "react";
 import { Briefcase, Edit2, Trash2, Plus, Save } from "lucide-react";
+import CommonInputField from "./CommonInputField";
+import CommonEditWrapper from "./CommonEditWrapper";
 
 interface ExperienceData {
   company: string;
@@ -72,20 +74,12 @@ export const Experience: React.FC<ExperienceProps> = ({
 
   if (!isEditing) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div className="flex justify-between items-start mb-4">
-          <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-            <Briefcase className="w-6 h-6 text-green-600" />
-            Work Experience
-          </h2>
-          <button
-            onClick={() => setIsEditing(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            <Edit2 className="w-4 h-4" />
-            Edit
-          </button>
-        </div>
+      <CommonEditWrapper
+        title="Work Experience"
+        icon={<Briefcase />}
+        iconColor="text-blue-600"
+        onEdit={() => setIsEditing(true)}
+      >
         <div className="space-y-6">
           {expList.map((exp) => (
             <div key={exp.id} className="border-l-4 border-green-600 pl-4">
@@ -100,7 +94,7 @@ export const Experience: React.FC<ExperienceProps> = ({
             </div>
           ))}
         </div>
-      </div>
+      </CommonEditWrapper>
     );
   }
 
@@ -125,83 +119,53 @@ export const Experience: React.FC<ExperienceProps> = ({
                 <Trash2 className="w-5 h-5" />
               </button>
             )}
+            <CommonInputField
+              fieldName="Company Name"
+              fieldValue={exp.company}
+              onChange={(e) => handleChange(exp.id, "company", e.target.value)}
+              placeholder="e.g. Tech Company Inc."
+              type="text"
+            />
+
+            <CommonInputField
+              fieldName="Position Title"
+              fieldValue={exp.position}
+              onChange={(e) => handleChange(exp.id, "position", e.target.value)}
+              placeholder="e.g. Tech Company Inc."
+              type="text"
+            />
+
+            <CommonInputField
+              fieldName="Main Responsibilities"
+              fieldValue={exp.position}
+              onChange={(e) =>
+                handleChange(exp.id, "responsibilities", e.target.value)
+              }
+              placeholder="Describe your main responsibilities and achievements..."
+              type="text"
+            />
+
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                  Company Name
-                </label>
-                <input
-                  type="text"
-                  value={exp.company}
-                  onChange={(e) =>
-                    handleChange(exp.id, "company", e.target.value)
-                  }
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="Tech Company Inc."
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                  Position Title
-                </label>
-                <input
-                  type="text"
-                  value={exp.position}
-                  onChange={(e) =>
-                    handleChange(exp.id, "position", e.target.value)
-                  }
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="Senior Software Engineer"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                  Main Responsibilities
-                </label>
-                <textarea
-                  value={exp.responsibilities}
-                  onChange={(e) =>
-                    handleChange(exp.id, "responsibilities", e.target.value)
-                  }
-                  required
-                  rows="3"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="Describe your main responsibilities and achievements..."
-                />
-              </div>
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                    From
-                  </label>
-                  <input
-                    type="text"
-                    value={exp.dateFrom}
-                    onChange={(e) =>
-                      handleChange(exp.id, "dateFrom", e.target.value)
-                    }
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Jan 2020"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
-                    To
-                  </label>
-                  <input
-                    type="text"
-                    value={exp.dateTo}
-                    onChange={(e) =>
-                      handleChange(exp.id, "dateTo", e.target.value)
-                    }
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Present"
-                  />
-                </div>
+                <CommonInputField
+                  fieldName="From"
+                  fieldValue={exp.position}
+                  onChange={(e) =>
+                    handleChange(exp.id, "dateFrom", e.target.value)
+                  }
+                  placeholder="e.g. Jan 2020"
+                  type="text"
+                />
+
+                <CommonInputField
+                  fieldName="To"
+                  fieldValue={exp.position}
+                  onChange={(e) =>
+                    handleChange(exp.id, "dateTo", e.target.value)
+                  }
+                  placeholder="e.g. Present"
+                  type="text"
+                />
               </div>
             </div>
           </div>
