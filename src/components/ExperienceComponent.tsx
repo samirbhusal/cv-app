@@ -131,7 +131,7 @@ export const Experience: React.FC<ExperienceProps> = ({
               fieldName="Position Title"
               fieldValue={exp.position}
               onChange={(e) => handleChange(exp.id, "position", e.target.value)}
-              placeholder="e.g. Tech Company Inc."
+              placeholder="e.g. Associate Software Engineer"
               type="text"
             />
 

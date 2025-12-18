@@ -22,7 +22,7 @@ const CommonInputField: React.FC<CommonInputFieldProps> = ({
   name,
 }) => {
   return (
-    <div>
+    <div className="my-3">
       <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
         {fieldName}
       </label>
