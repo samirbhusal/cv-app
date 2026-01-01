@@ -3,13 +3,7 @@ import type { FormEvent } from "react";
 import { GraduationCap, Edit2, Trash2, Plus, Save } from "lucide-react";
 import CommonInputField from "./CommonInputField";
 import CommonEditWrapper from "./CommonEditWrapper";
-
-interface EducationData {
-  school: string;
-  title: string;
-  date: string;
-  id: number;
-}
+import type { EducationData } from "../types/cv.types";
 
 interface EducationProps {
   education: EducationData[];
@@ -18,7 +12,7 @@ interface EducationProps {
 
 export const Education: React.FC<EducationProps> = ({ education, onSave }) => {
   const [isEditing, setIsEditing] = useState(education.length === 0);
-  const [eduList, setEduList] = useState(
+  const [eduList, setEduList] = useState<EducationData[]>(
     education.length > 0
       ? education
       : [{ school: "", title: "", date: "", id: Date.now() }]

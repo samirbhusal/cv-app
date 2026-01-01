@@ -3,12 +3,7 @@ import type { ChangeEvent } from "react";
 import { User, UserIcon, Phone, Mail, Save } from "lucide-react";
 import CommonInputField from "./CommonInputField";
 import CommonEditWrapper from "./CommonEditWrapper";
-
-interface GeneralInfoData {
-  name: string;
-  email: string;
-  phone: string;
-}
+import type { GeneralInfoData } from "../types/cv.types";
 
 interface GeneralInfoProps {
   data: GeneralInfoData;

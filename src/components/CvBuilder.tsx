@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { GeneralInfo } from "./GeneralInfoComponent";
 import { Education } from "./EducationInfoComponent";
 import { Experience } from "./ExperienceComponent";
+import type {
+  GeneralInfoData,
+  EducationData,
+  ExperienceData,
+} from "../types/cv.types";
 
 export default function CVBuilder() {
-  const [generalInfo, setGeneralInfo] = useState({
+  const [generalInfo, setGeneralInfo] = useState<GeneralInfoData>({
     name: "",
     email: "",
     phone: "",
   });
 
-  const [education, setEducation] = useState([]);
-  const [experience, setExperience] = useState([]);
+  const [education, setEducation] = useState<EducationData>([]);
+  const [experience, setExperience] = useState<ExperienceData>([]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
