@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { FormEvent } from "react";
-import { Briefcase, Edit2, Trash2, Plus, Save } from "lucide-react";
+import { Briefcase, Trash2, Plus, Save } from "lucide-react";
 import CommonInputField from "./CommonInputField";
 import CommonEditWrapper from "./CommonEditWrapper";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { FormEvent } from "react";
-import { GraduationCap, Edit2, Trash2, Plus, Save } from "lucide-react";
+import { GraduationCap, Trash2, Plus, Save } from "lucide-react";
 import CommonInputField from "./CommonInputField";
 import CommonEditWrapper from "./CommonEditWrapper";
 import type { EducationData } from "../types/cv.types";
@@ -75,7 +75,7 @@ export const Education: React.FC<EducationProps> = ({ education, onSave }) => {
         Education
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {eduList.map((edu, index) => (
+        {eduList.map((edu) => (
           <div
             key={edu.id}
             className="p-4 border border-gray-200 rounded-lg relative"

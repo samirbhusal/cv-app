@@ -15,8 +15,8 @@ export default function CVBuilder() {
     phone: "",
   });
 
-  const [education, setEducation] = useState<EducationData>([]);
-  const [experience, setExperience] = useState<ExperienceData>([]);
+  const [education, setEducation] = useState<EducationData[]>([]);
+  const [experience, setExperience] = useState<ExperienceData[]>([]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
